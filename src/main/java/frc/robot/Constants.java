@@ -13,19 +13,22 @@ public final class Constants {
   public static final class Swerve {
     public static final double stickDeadband = 0.1;//configure and mess around with later
 
-    public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW-
+    public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW- 
+    //depends on gyro position ofc but if its rightside up it's 
+    //inverted for mk4i modules, at least that's what I've seen?
+    //there might be issues with this later but it'll be fine!
 
     /* Drivetrain Constants */
     public static final double trackWidth = Units.inchesToMeters(21.73); //change later
     public static final double wheelBase = Units.inchesToMeters(21.73); //change later
-    public static final double wheelDiameter = Units.inchesToMeters(4.0); //change later
+    public static final double wheelDiameter = Units.inchesToMeters(4.0); //change later (maybe?)
     public static final double wheelCircumference = wheelDiameter * Math.PI;
 
     public static final double openLoopRamp = 0.25; //dw about
     public static final double closedLoopRamp = 0.0; //dw about
 
     public static final double driveGearRatio = (6.75 / 1.0); // 6.75:1
-    public static final double angleGearRatio = (12.8 / 1.0); // 12.8:1
+    public static final double angleGearRatio = ((150/7) / 1.0); // 150/7:1
 
     public static final SwerveDriveKinematics swerveKinematics =
         new SwerveDriveKinematics(
@@ -65,8 +68,10 @@ public final class Constants {
     public static final double angleConversionFactor = 360.0 / angleGearRatio;
 
     /* Swerve Profiling Values */
-    public static final double maxSpeed = 4.5; // meters per second
-    public static final double maxAngularVelocity = 11.5;
+    public static final double maxSpeed = 4.4196; // meters per second
+    public static final double maxAngularVelocity = 11.5; //find out?? In theory the 
+    //max speed is already given but i can't find the max angular velocity, 
+    //so we'll probably calculate both anyways
 
     /* Neutral Modes */
     public static final IdleMode angleNeutralMode = IdleMode.kBrake;
@@ -122,7 +127,7 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 3;
+    public static final double kMaxSpeedMetersPerSecond = 3; //we'll get to this nonsense *later*
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
