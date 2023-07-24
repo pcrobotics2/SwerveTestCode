@@ -48,14 +48,15 @@ public class Swerve extends SubsystemBase {
                 ? ChassisSpeeds.fromFieldRelativeSpeeds(
                     translation.getX(), translation.getY(), rotation, getYaw())
                 : new ChassisSpeeds(translation.getX(), translation.getY(), rotation));
-    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);
+    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);//try doing smth different with this later, I remember reading about a better way to do this ALSO LOOK UP MOORE PENROSE PUESDOINVERSE TF
 
-    for (SwerveModule mod : mSwerveMods) {
+    for (SwerveModule mod : mSwerveMods) {//i love this form of for loops, ive never seen it before!
       mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
     }
   }
 
-  /* Used by SwerveControllerCommand in Auto */
+  /* Used by SwerveControllerCommand in Auto */ 
+  //I'll have to worry about this later... but not now, dear god not now
   public void setModuleStates(SwerveModuleState[] desiredStates) {
     SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.Swerve.maxSpeed);
 
@@ -81,7 +82,7 @@ public class Swerve extends SubsystemBase {
   }
 
   public void zeroGyro() {
-    gyro.reset();;
+    gyro.reset();
   }
 
   public Rotation2d getYaw() {

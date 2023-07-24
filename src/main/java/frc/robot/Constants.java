@@ -68,7 +68,7 @@ public final class Constants {
     public static final double angleConversionFactor = 360.0 / angleGearRatio;
 
     /* Swerve Profiling Values */
-    public static final double maxSpeed = 4.4196; // meters per second
+    public static final double maxSpeed = 4.4196; // meters per second IN THEORY
     public static final double maxAngularVelocity = 11.5; //find out?? In theory the 
     //max speed is already given but i can't find the max angular velocity, 
     //so we'll probably calculate both anyways
@@ -89,7 +89,7 @@ public final class Constants {
     public static final class Mod0 {
       public static final int driveMotorID = 9;
       public static final int angleMotorID = 8;
-      public static final int canCoderID = 1;
+      public static final int canCoderID = 2;
       public static final Rotation2d angleOffset = Rotation2d.fromDegrees(327.48046875);//find this out
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -99,7 +99,7 @@ public final class Constants {
     public static final class Mod1 {
       public static final int driveMotorID = 13;
       public static final int angleMotorID = 12;
-      public static final int canCoderID = 2;
+      public static final int canCoderID = 3;
       public static final Rotation2d angleOffset = Rotation2d.fromDegrees(286.34765625);//Find this out
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -109,7 +109,7 @@ public final class Constants {
     public static final class Mod2 {
       public static final int driveMotorID = 6;
       public static final int angleMotorID = 5;
-      public static final int canCoderID = 3;
+      public static final int canCoderID = 1;
       public static final Rotation2d angleOffset = Rotation2d.fromDegrees(55.01953125);//find this out
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -119,7 +119,7 @@ public final class Constants {
     public static final class Mod3 {
       public static final int driveMotorID = 11;
       public static final int angleMotorID = 10;
-      public static final int canCoderID = 4;
+      public static final int canCoderID = 0;
       public static final Rotation2d angleOffset = Rotation2d.fromDegrees(67.939453125);//find this out
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);

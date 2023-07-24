@@ -15,7 +15,6 @@ import frc.lib.util.CANCoderUtil.CCUsage;
 import frc.lib.util.CANSparkMaxUtil;
 import frc.lib.util.CANSparkMaxUtil.Usage;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.lib.config.*;
 
 public class SwerveModule {
