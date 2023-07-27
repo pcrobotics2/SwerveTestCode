@@ -9,6 +9,7 @@ import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import frc.lib.math.OnboardModuleState;
 import frc.lib.util.CANCoderUtil;
 import frc.lib.util.CANCoderUtil.CCUsage;
@@ -147,4 +148,14 @@ public class SwerveModule {
   public SwerveModuleState getState() {
     return new SwerveModuleState(driveEncoder.getVelocity(), getAngle());
   }
+
+  public SwerveModulePosition getPosition(){
+    return new SwerveModulePosition(
+      //this is sketchy as fuck what the actual hell man, look into this later PLEASE, I DON'T THINK IT WORKS LIKE THIS
+      (driveEncoder.getPosition() * (Constants.Swerve.wheelCircumference/(Constants.Swerve.driveGearRatio * 42))),
+      getAngle()
+    );
+  }
+
+
 }

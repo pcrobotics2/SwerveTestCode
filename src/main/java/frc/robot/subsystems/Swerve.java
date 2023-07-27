@@ -8,6 +8,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,7 +27,8 @@ public class Swerve extends SubsystemBase {
     gyro = new AHRS();
     zeroGyro();
 
-   // swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw());
+    //The args go Kinematics, rot2d angle, and SwerveModulePosition module positions, which i believe needs the distance measured by the wheels and the angle
+    swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(),getModulePositions());//this was comented out for some reason??? But doing this obviously gave a nullpointer error sooooo we'll see what happens
 
     mSwerveMods =
         new SwerveModule[] {
@@ -69,10 +71,11 @@ public class Swerve extends SubsystemBase {
     return swerveOdometry.getPoseMeters();
   }
 
- /*  public void resetOdometry(Pose2d pose) {
+  /*public void resetOdometry(Pose2d pose) {
     swerveOdometry.resetPosition(pose, getYaw());
   } */
 
+  //STATES ARE VELOCITY AND ANGLE, NOT POSITION DON'T LISTEN TO THEIR SWEET LIES
   public SwerveModuleState[] getStates() {
     SwerveModuleState[] states = new SwerveModuleState[4];
     for (SwerveModule mod : mSwerveMods) {
@@ -80,6 +83,14 @@ public class Swerve extends SubsystemBase {
     }
     return states;
   }
+
+  public SwerveModulePosition[] getModulePositions(){
+    SwerveModulePosition[] positions = new SwerveModulePosition[4];
+    for(SwerveModule mod : mSwerveMods){
+        positions[mod.moduleNumber] = mod.getPosition();
+    }
+    return positions;
+}
 
   public void zeroGyro() {
     gyro.reset();

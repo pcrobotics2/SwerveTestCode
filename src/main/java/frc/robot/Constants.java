@@ -13,7 +13,7 @@ public final class Constants {
   public static final class Swerve {
     public static final double stickDeadband = 0.1;//configure and mess around with later
 
-    public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW- 
+    public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW- 
     //depends on gyro position ofc but if its rightside up it's 
     //inverted for mk4i modules, at least that's what I've seen?
     //there might be issues with this later but it'll be fine!
@@ -79,7 +79,7 @@ public final class Constants {
 
     /* Motor Inverts */
     public static final boolean driveInvert = false;
-    public static final boolean angleInvert = false;
+    public static final boolean angleInvert = true;
 
     /* Angle Encoder Invert */
     public static final boolean canCoderInvert = false;
