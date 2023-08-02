@@ -27,9 +27,6 @@ public class Swerve extends SubsystemBase {
     gyro = new AHRS();
     zeroGyro();
 
-    //The args go Kinematics, rot2d angle, and SwerveModulePosition module positions, which i believe needs the distance measured by the wheels and the angle
-    swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(),getModulePositions());//this was comented out for some reason??? But doing this obviously gave a nullpointer error sooooo we'll see what happens
-
     mSwerveMods =
         new SwerveModule[] {
           new SwerveModule(0, Constants.Swerve.Mod0.constants),
@@ -37,6 +34,9 @@ public class Swerve extends SubsystemBase {
           new SwerveModule(2, Constants.Swerve.Mod2.constants),
           new SwerveModule(3, Constants.Swerve.Mod3.constants)
         };
+
+    //The args go Kinematics, rot2d angle, and SwerveModulePosition module positions, which i believe needs the distance measured by the wheels and the angle
+    swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(),getModulePositions());//this was comented out for some reason??? But doing this obviously gave a nullpointer error sooooo we'll see what happens
 
     field = new Field2d();
     SmartDashboard.putData("Field", field);
@@ -55,6 +55,7 @@ public class Swerve extends SubsystemBase {
     for (SwerveModule mod : mSwerveMods) {//i love this form of for loops, ive never seen it before!
       mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
     }
+
   }
 
   /* Used by SwerveControllerCommand in Auto */ 

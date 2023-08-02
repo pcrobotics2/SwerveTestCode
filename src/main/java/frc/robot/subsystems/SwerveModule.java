@@ -9,6 +9,7 @@ import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import frc.lib.math.OnboardModuleState;
 import frc.lib.util.CANCoderUtil;
@@ -59,6 +60,8 @@ public class SwerveModule {
 
     lastAngle = getState().angle;
   }
+
+  //public int countsPerRevolution = driveEncoder.getCountsPerRevolution();
 
   public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) {
     // Custom optimize command, since default WPILib optimize assumes continuous controller which
@@ -111,6 +114,7 @@ public class SwerveModule {
     driveMotor.enableVoltageCompensation(Constants.Swerve.voltageComp);
     driveMotor.burnFlash();
     driveEncoder.setPosition(0.0);
+    //SmartDashboard.putNumber("CPR", countsPerRevolution);
   }
 
   private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop) {
@@ -151,7 +155,7 @@ public class SwerveModule {
 
   public SwerveModulePosition getPosition(){
     return new SwerveModulePosition(
-      //this is sketchy as fuck what the actual hell man, look into this later PLEASE, I DON'T THINK IT WORKS LIKE THIS
+      //I lied hehehe alegebra 
       (driveEncoder.getPosition() * (Constants.Swerve.wheelCircumference/(Constants.Swerve.driveGearRatio * 42))),
       getAngle()
     );
