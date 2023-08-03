@@ -38,7 +38,7 @@ public class TeleopSwerve extends CommandBase {
 
   @Override
   public void execute() {
-    SmartDashboard.putNumber("Rotation", rotationSup.getAsDouble());
+    SmartDashboard.putNumber("RotationPRE", rotationSup.getAsDouble());
     /* Get Values, Deadband*/
     double translationVal =
         translationLimiter.calculate(
