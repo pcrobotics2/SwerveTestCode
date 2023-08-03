@@ -10,6 +10,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -54,6 +55,11 @@ public class Swerve extends SubsystemBase {
 
     for (SwerveModule mod : mSwerveMods) {//i love this form of for loops, ive never seen it before!
       mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
+
+    SmartDashboard.putNumber("RotationPOST", rotation);
+    SmartDashboard.putNumber("TranslationPOST", translation.getX());
+    SmartDashboard.putNumber("StrafePOST", translation.getY());
+
     }
 
   }
@@ -72,7 +78,7 @@ public class Swerve extends SubsystemBase {
     return swerveOdometry.getPoseMeters();
   }
 
-  /*public void resetOdometry(Pose2d pose) {
+ /*  public void resetOdometry(Pose2d pose) {
     swerveOdometry.resetPosition(pose, getYaw());
   } */
 
