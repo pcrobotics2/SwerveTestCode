@@ -98,6 +98,12 @@ public class Swerve extends SubsystemBase {
     return positions;
 }
 
+  public void resetToAbsolute2(){
+    for(SwerveModule mod : mSwerveMods){
+      mod.resetToAbsolute();
+    }
+  }
+
   public void zeroGyro() {
     gyro.reset();
   }
@@ -107,6 +113,7 @@ public class Swerve extends SubsystemBase {
         ? Rotation2d.fromDegrees(360 - gyro.getYaw())
         : Rotation2d.fromDegrees(gyro.getYaw());
   }
+
 
   @Override
   public void periodic() {
