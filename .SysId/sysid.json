@@ -3,6 +3,8 @@
     "Analysis Type": "Drivetrain",
     "NetworkTables Settings": {
       "serverTeam": "3291"
-    }
+    },
+    "mode": "Client (NT4)",
+    "serverTeam": "3291"
   }
 }

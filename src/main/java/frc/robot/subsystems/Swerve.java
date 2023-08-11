@@ -100,6 +100,7 @@ public class Swerve extends SubsystemBase {
 
   public void resetToAbsolute2(){
     for(SwerveModule mod : mSwerveMods){
+      //mod.resetIntegratedEncoders();
       mod.resetToAbsolute();
     }
   }
@@ -127,6 +128,10 @@ public class Swerve extends SubsystemBase {
           "Mod " + mod.moduleNumber + " Integrated", mod.getState().angle.getDegrees());
       SmartDashboard.putNumber(
           "Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
+      SmartDashboard.putNumber(
+          "Mod " + mod.moduleNumber + " Angle Motor Voltage", mod.appliedAngleVoltage());
+      SmartDashboard.putNumber(
+          "Mod " + mod.moduleNumber + " Drive Motor Voltage", mod.appliedDriveVoltage());
     }
   }
 }

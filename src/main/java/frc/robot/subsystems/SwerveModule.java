@@ -76,6 +76,10 @@ public class SwerveModule {
     integratedAngleEncoder.setPosition(absolutePosition);
   }
 
+  public void resetIntegratedEncoders(){
+    integratedAngleEncoder.setPosition(0);
+  }
+
   private void configAngleEncoder() {
     angleEncoder.configFactoryDefault();
     CANCoderUtil.setCANCoderBusUsage(angleEncoder, CCUsage.kMinimal);
@@ -95,6 +99,7 @@ public class SwerveModule {
     angleController.setFF(Constants.Swerve.angleKFF);
     angleMotor.enableVoltageCompensation(Constants.Swerve.voltageComp);
     angleMotor.burnFlash();
+    resetIntegratedEncoders();
     resetToAbsolute();
   }
 
@@ -150,6 +155,20 @@ public class SwerveModule {
 
   public SwerveModuleState getState() {
     return new SwerveModuleState(driveEncoder.getVelocity(), getAngle());
+  }
+
+  public double appliedAngleVoltage(){
+
+    final double angleVoltage;
+    return angleVoltage = angleMotor.getBusVoltage() * angleMotor.getAppliedOutput();
+
+  }
+
+  public double appliedDriveVoltage(){
+    
+    final double driveVoltage;
+    return driveVoltage = driveMotor.getBusVoltage() * driveMotor.getAppliedOutput();
+
   }
 
   public SwerveModulePosition getPosition(){
