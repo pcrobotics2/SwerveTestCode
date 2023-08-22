@@ -10,6 +10,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -34,6 +35,9 @@ public class Swerve extends SubsystemBase {
           new SwerveModule(2, Constants.Swerve.Mod2.constants),
           new SwerveModule(3, Constants.Swerve.Mod3.constants)
         };
+
+    Timer.delay(1);
+    resetToAbsolute2();
 
     //The args go Kinematics, rot2d angle, and SwerveModulePosition module positions, which i believe needs the distance measured by the wheels and the angle
     swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(),getModulePositions());//this was comented out for some reason??? But doing this obviously gave a nullpointer error sooooo we'll see what happens
@@ -100,7 +104,6 @@ public class Swerve extends SubsystemBase {
 
   public void resetToAbsolute2(){
     for(SwerveModule mod : mSwerveMods){
-      //mod.resetIntegratedEncoders();
       mod.resetToAbsolute();
     }
   }
