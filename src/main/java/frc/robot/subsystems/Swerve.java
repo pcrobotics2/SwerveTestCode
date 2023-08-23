@@ -25,6 +25,8 @@ public class Swerve extends SubsystemBase {
   private Field2d field;
 
   public Swerve() {
+    
+    Timer.delay(1);
     gyro = new AHRS();
     zeroGyro();
 

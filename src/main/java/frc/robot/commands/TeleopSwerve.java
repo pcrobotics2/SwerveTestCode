@@ -9,11 +9,9 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
-import frc.robot.subsystems.SwerveModule;
 
 public class TeleopSwerve extends CommandBase {
   private Swerve s_Swerve;
-  private SwerveModule swerveModule;
   private DoubleSupplier translationSup;
   private DoubleSupplier strafeSup;
   private DoubleSupplier rotationSup;
