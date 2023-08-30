@@ -9,6 +9,7 @@ import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import frc.lib.math.OnboardModuleState;
 import frc.lib.util.CANCoderUtil;
@@ -72,9 +73,11 @@ public class SwerveModule {
   }
 
   public void resetToAbsolute() {
-    double absolutePosition = getCanCoder().getDegrees() - angleOffset.getDegrees();
+    double absolutePosition = getCanCoder().getDegrees() - angleOffset.getDegrees();//work on the ideal version of this so it boots up correctly
     integratedAngleEncoder.setPosition(absolutePosition);
     driveEncoder.setPosition(0.0);
+    SmartDashboard.putNumber("Reset Cancoder absolute position", absolutePosition);
+    SmartDashboard.putNumber("Reset Cancoder value", getCanCoder().getDegrees());
   }
 
   public void resetIntegratedEncoders(){
@@ -118,7 +121,7 @@ public class SwerveModule {
     angleController.setFF(Constants.Swerve.angleKFF);
     angleMotor.enableVoltageCompensation(Constants.Swerve.voltageComp);
     angleMotor.burnFlash();
-    resetIntegratedEncoders();
+    //resetIntegratedEncoders();
     resetToAbsolute();
   }
 
