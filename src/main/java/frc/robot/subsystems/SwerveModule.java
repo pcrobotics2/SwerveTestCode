@@ -17,6 +17,7 @@ import frc.lib.util.CANCoderUtil.CCUsage;
 import frc.lib.util.CANSparkMaxUtil;
 import frc.lib.util.CANSparkMaxUtil.Usage;
 import frc.robot.Constants;
+import frc.robot.Constants.Swerve.Mod0;
 import frc.lib.config.*;
 
 public class SwerveModule {
@@ -105,7 +106,6 @@ public class SwerveModule {
     driveMotor.enableVoltageCompensation(Constants.Swerve.voltageComp);
     driveMotor.burnFlash();
     driveEncoder.setPosition(0.0);
-    //SmartDashboard.putNumber("CPR", countsPerRevolution);
   }
 
   private void configAngleMotor() {

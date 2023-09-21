@@ -41,8 +41,7 @@ public class Swerve extends SubsystemBase {
     Timer.delay(1);
     resetToAbsolute2();
 
-    //The args go Kinematics, rot2d angle, and SwerveModulePosition module positions, which i believe needs the distance measured by the wheels and the angle
-    swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(),getModulePositions());//this was comented out for some reason??? But doing this obviously gave a nullpointer error sooooo we'll see what happens
+    swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(),getModulePositions());
 
     field = new Field2d();
     SmartDashboard.putData("Field", field);
@@ -56,21 +55,16 @@ public class Swerve extends SubsystemBase {
                 ? ChassisSpeeds.fromFieldRelativeSpeeds(
                     translation.getX(), translation.getY(), rotation, getYaw())
                 : new ChassisSpeeds(translation.getX(), translation.getY(), rotation));
-    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);//try doing smth different with this later, I remember reading about a better way to do this ALSO LOOK UP MOORE PENROSE PUESDOINVERSE TF
+    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);
 
-    for (SwerveModule mod : mSwerveMods) {//i love this form of for loops, ive never seen it before!
+    for (SwerveModule mod : mSwerveMods) {
       mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
-
-   /*SmartDashboard.putNumber("RotationPOST", rotation);
-    SmartDashboard.putNumber("TranslationPOST", translation.getX());
-    SmartDashboard.putNumber("StrafePOST", translation.getY());*/
 
     }
 
   }
 
   /* Used by SwerveControllerCommand in Auto */ 
-  //I'll have to worry about this later... but not now, dear god not now
   public void setModuleStates(SwerveModuleState[] desiredStates) {
     SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.Swerve.maxSpeed);
 
@@ -87,7 +81,6 @@ public class Swerve extends SubsystemBase {
     swerveOdometry.resetPosition(pose, getYaw());
   } */
 
-  //STATES ARE VELOCITY AND ANGLE, NOT POSITION DON'T LISTEN TO THEIR SWEET LIES
   public SwerveModuleState[] getStates() {
     SwerveModuleState[] states = new SwerveModuleState[4];
     for (SwerveModule mod : mSwerveMods) {
