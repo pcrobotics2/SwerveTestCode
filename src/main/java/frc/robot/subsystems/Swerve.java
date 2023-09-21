@@ -61,9 +61,9 @@ public class Swerve extends SubsystemBase {
     for (SwerveModule mod : mSwerveMods) {//i love this form of for loops, ive never seen it before!
       mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
 
-    SmartDashboard.putNumber("RotationPOST", rotation);
+   /*SmartDashboard.putNumber("RotationPOST", rotation);
     SmartDashboard.putNumber("TranslationPOST", translation.getX());
-    SmartDashboard.putNumber("StrafePOST", translation.getY());
+    SmartDashboard.putNumber("StrafePOST", translation.getY());*/
 
     }
 
