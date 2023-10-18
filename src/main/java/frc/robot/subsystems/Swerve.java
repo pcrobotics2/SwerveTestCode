@@ -103,6 +103,11 @@ public class Swerve extends SubsystemBase {
     }
   }
 
+  public void cancoderData0(){
+    Rotation2d cancoder0Data = mSwerveMods[0].getCanCoder();
+    System.out.println(cancoder0Data);
+    }
+
   public void zeroGyro() {
     gyro.reset();
   }
@@ -119,17 +124,20 @@ public class Swerve extends SubsystemBase {
     //swerveOdometry.update(getYaw(), getStates());
     field.setRobotPose(getPose());
 
+    cancoderData0();
+
     for (SwerveModule mod : mSwerveMods) {
+
       SmartDashboard.putNumber(
           "Mod " + mod.moduleNumber + " Cancoder", mod.getCanCoder().getDegrees());
       SmartDashboard.putNumber(
           "Mod " + mod.moduleNumber + " Integrated", mod.getState().angle.getDegrees());
       SmartDashboard.putNumber(
           "Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
-      SmartDashboard.putNumber(
+      /*SmartDashboard.putNumber(
           "Mod " + mod.moduleNumber + " Angle Motor Voltage", mod.appliedAngleVoltage());
       SmartDashboard.putNumber(
-          "Mod " + mod.moduleNumber + " Drive Motor Voltage", mod.appliedDriveVoltage());
+          "Mod " + mod.moduleNumber + " Drive Motor Voltage", mod.appliedDriveVoltage());*/
     }
   }
 }
