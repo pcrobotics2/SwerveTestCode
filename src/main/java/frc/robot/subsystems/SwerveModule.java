@@ -146,9 +146,10 @@ public class SwerveModule {
   private void setAngle(SwerveModuleState desiredState) {
     // Prevent rotating module if speed is less then 1%. Prevents jittering.
     Rotation2d desiredAngle = (Math.abs(desiredState.speedMetersPerSecond) / Constants.Swerve.maxSpeed) < 0.01 ? this.lastAngle : desiredState.angle;
+    this.lastAngle = desiredAngle;
     Rotation2d currentAngle = this.getCanCoder();
     Double currentDegrees = currentAngle.getDegrees(); // -180 to 180
-    Double desiredDegrees = desiredAngle.getDegrees();  // -180 to 180
+    Double desiredDegrees = desiredAngle.getDegrees() + this.angleOffset.getDegrees();  // -180 to 180
     Double diffDegrees = (currentDegrees - desiredDegrees + 180) % 360 - 180;
     diffDegrees = diffDegrees < -180 ? diffDegrees + 360 : diffDegrees;
     

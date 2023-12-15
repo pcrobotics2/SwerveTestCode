@@ -45,7 +45,7 @@ public class RobotContainer {
                 s_Swerve, 
                 () -> controller00.getRawAxis(1),//-driver.getRawAxis(translationAxis), 
                 () -> controller00.getRawAxis(0),//-driver.getRawAxis(strafeAxis), 
-                () -> controller00.getRawAxis(2),//-driver.getRawAxis(rotationAxis), 
+                () -> controller00.getRawAxis(4),//-driver.getRawAxis(rotationAxis), 
                 () -> robotCentric.getAsBoolean()
             )
         );
