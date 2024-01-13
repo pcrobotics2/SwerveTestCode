@@ -52,6 +52,7 @@ public class SwerveModule {
       Constants.Swerve.angleKI,
       Constants.Swerve.angleKD
     );
+    this.anglePid.enableContinuousInput(-180, 180);
 
     /* Angle Encoder Config */
     this.angleEncoder = new CANCoder(moduleConstants.cancoderID);
@@ -68,6 +69,7 @@ public class SwerveModule {
     this.integratedAngleEncoder = angleMotor.getEncoder();
     // this.angleController = angleMotor.getPIDController();
     this.configAngleMotor();
+    
 
     this.lastAngle = getState().angle;
   }
@@ -79,8 +81,21 @@ public class SwerveModule {
     // REV and CTRE are not
     //desiredState = OnboardModuleState.optimize(desiredState, getState().angle);
 
-    setAngle(desiredState);
-    setSpeed(desiredState, isOpenLoop);
+    //optimizes wheel movment, stops rotation if less than 1% speed
+    SwerveModuleState state = SwerveModuleState.optimize(desiredState, getState().angle);
+    Rotation2d desiredAngle = (Math.abs(desiredState.speedMetersPerSecond) / Constants.Swerve.maxSpeed) < 0.01 ? this.lastAngle : desiredState.angle;
+    this.lastAngle = desiredAngle;
+
+//calculates output
+    final double angleOutput = anglePid.calculate(getCanCoder().getDegrees(), desiredAngle.getDegrees());
+    double percentOutput = state.speedMetersPerSecond / Constants.Swerve.maxSpeed;
+    this.driveMotor.set(percentOutput);
+    this.angleMotor.set(angleOutput);
+    
+
+    
+    //setAngle(desiredState);
+    //setSpeed(desiredState, isOpenLoop);
   }
 
   public void resetToAbsolute() {
