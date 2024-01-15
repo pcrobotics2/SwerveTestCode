@@ -7,7 +7,6 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
-//squibble
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
@@ -77,7 +76,7 @@ public class SwerveModule {
   public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) {
     // Custom optimize command, since default WPILib optimize assumes continuous controller which
     // REV and CTRE are not
-    //desiredState = OnboardModuleState.optimize(desiredState, getState().angle);
+    desiredState = OnboardModuleState.optimize(desiredState, getState().angle);
 
     setAngle(desiredState);
     setSpeed(desiredState, isOpenLoop);
@@ -85,7 +84,6 @@ public class SwerveModule {
 
   public void resetToAbsolute() {
     this.lastAngle = Rotation2d.fromDegrees(0);
-    //grrrrr
   }
 
   public void resetIntegratedEncoders(){
