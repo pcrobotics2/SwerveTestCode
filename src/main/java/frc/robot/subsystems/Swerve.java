@@ -105,7 +105,7 @@ public class Swerve extends SubsystemBase {
 
   public void cancoderData0() {
     Rotation2d cancoder0Data = mSwerveMods[0].getCanCoder();
-    System.out.println(cancoder0Data);
+    //System.out.println(cancoder0Data);
   }
 
   public void zeroGyro() {
