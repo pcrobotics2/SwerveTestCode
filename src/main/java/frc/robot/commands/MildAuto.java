@@ -43,9 +43,21 @@ public class MildAuto extends SequentialCommandGroup {
             new Pose2d(0, 0, new Rotation2d(0)),
             // Pass through an interior waypoint
             List.of(new Translation2d(0.5, 0)),
-            // End 1 meter1 straight ahead of where we started, facing forward
-            new Pose2d(1, 0, new Rotation2d(0)),
+            // End 1 meter straight ahead of where we started, facing forward
+            new Pose2d(3, 0, new Rotation2d(0)),
             config);
+
+
+            //this should all be fine
+            /*Trajectory exampleTrajectory =
+            TrajectoryGenerator.generateTrajectory(
+                // Start at the origin facing the +X direction
+                new Pose2d(0, 0, new Rotation2d(0)), //when changing these values the wheel occasionally flip
+                // Pass through these two interior waypoints, making an 's' curve path
+                List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+                // End 3 meters straight ahead of where we started, facing forward
+                new Pose2d(3, 0, new Rotation2d(0)),
+                config);*/
 
     ProfiledPIDController thetaController =
       new ProfiledPIDController(
